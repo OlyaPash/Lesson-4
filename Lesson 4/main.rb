@@ -7,8 +7,8 @@ class Main
     @trains = []
     @routes = []
     @wagons = []
-    @end_station = end_station
-    @starting_station = starting_station
+#   @end_station = end_station
+#   @starting_station = starting_station
   end
 
 
@@ -42,11 +42,11 @@ class Main
     else
       stations_list
       puts "Введите индекс станции, чтобы выбрать начальную: "
-      starting_station = gets.chomp.to_i
-      first_st = @stations[starting_station]
+      @starting_station = gets.chomp.to_i
+      first_st = @stations[@starting_station]
       puts "Введите индекс для конечной: "
-      end_station = gets.chomp.to_i
-      last_st = @stations[end_station]
+      @end_station = gets.chomp.to_i
+      last_st = @stations[@end_station]
       route = Route.new(first_st, last_st)
       @routes << route
     end
@@ -120,11 +120,11 @@ class Main
       
       case @trains[train].type 
         when "cargo"
-          wagon = WagonCargo.new
+          wagon = CargoWagon.new
           @wagons << wagon
           @trains[train].add_wagons(wagon)
         when "passenger"
-          wagon = WagonPassenger.new
+          wagon = PassengerWagon.new
           @wagons << wagon
           @trains[train].add_wagons(wagon)
       end
